@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Coaching Studio</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- ----------Datepicker bootstrap 5 library----------- -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- -----  libraries for slider---- -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" />
+    <link rel="stylesheet"
+      href="https://floridakoshervillas.com/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=3.5.1">
+    <!-- Include bootstrap-timepicker CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css"
+      rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+
+  <!-- ---------NAVBAR------------ -->
+  <div class="nav-container page-header img-z-index">
+    <nav class="navbar navbar-expand-sm navbar-light " id="neubar">
+      <div class="container-fluid px-5">
+        <a id="logo" href="{{url_for ('hello_world')}}">
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{url_for ('hello_world')}}">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for ('hello_world')}}#book-appointment">Book Appointment</a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for ('hello_world')}}#sec-about">About</a>
+            </li>
+
+            <div class="btn-cont">
+
+            <li class="nav-item px-2">
+              <a class="btn btn-custom bg-pink btn-hover-pink"
+                href="{{url_for ('hello_world')}}#sec-contact">Contact</a>
+            </li>
+
+            <li class="nav-item px-2">
+
+              <a class="btn btn-custom bg-green btn-hover-green" href="{{url_for ('shop')}}">Store</a>
+
+            </li>
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!-- ----------------Navbar-------------- -->
+  <div id="hider" class="initial"></div>
+
+  <!-- -----------------------Hero Section------------------------- -->
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner h-100">
+      <div class="carousel-item active zoominheader">
+        <img src="{{url_for('static', filename= 'images/slider-img-1.jpg')}}" class="w-100" alt="..." />
+
+        <div class="carousel-caption">
+          <h1 class="slider-head">Crafting The Best You</h1>
+
+          <p class="slider-text">
+            Start your journey, discover your needs, find the best in you.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item zoominheader">
+        <img src="{{url_for('static', filename= 'images/tree-img-2.jpg')}}" class="w-100" alt="..." />
+
+        <div class="carousel-caption">
+          <h1 class="slider-head">Crafting The Best You</h1>
+
+          <p class="slider-text">
+            Start your journey, discover your needs, find the best in you.
+          </p>
+        </div>
+      </div>
+
+      <div class="carousel-item zoominheader">
+        <img src="{{url_for('static', filename= 'images/hero-img-3-sofa.jpg')}}" class="w-100" alt="..." />
+
+        <div class="carousel-caption">
+          <h1 class="slider-head">Crafting The Best You</h1>
+
+          <p class="slider-text">
+            Start your journey, discover your needs, find the best in you.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- ---------------------------Our Mission (finalized)------------------------------ -->
+
+  <section id="sec-mission" class="section-padding-tb px-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 slide-wraper-left">
+          <div class="w-auto px-2 slide-left-img">
+            <img src="{{url_for('static', filename= 'images/mission-img-2.png')}}" class="w-100" alt="our mission" />
+          </div>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center slide-wraper-right">
+          <div class="px-4">
+            <div class="right-slide-text">
+              <h2>My Mission</h2>
+
+              <p>
+                Life coaching is the best option for you if you want to achieve
+                your goals and perform at your best! Are you feeling stuck and
+                want to make changes? Coaching inspires people to make positive
+                changes in their life and helps you reach your goals.
+              </p>
+              <br />
+
+              <p>
+                Coaching foster a culture of growth, resiliency, and
+                authenticity. We are dedicated to serving as a beacon of hope
+                for those seeking to rewrite their tales and find success that
+                lasts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ---------------------------Section Book Appointment------------------ -->
+
+
+  <section id="book-appointment" class="text-center section-padding-tb scroll-section">
+
+
+    <div class="row mb-5">
+      <div class="col-md-4  justify-content-start align-items-center text-center ">
+        <!-- <img class="w-auto" src="
+             {{url_for('static', filename= 'images/divider-pink.png')}}" alt /> -->
+      </div>
+
+      <div class="col-md-4">
+        <h2 class="text-center">Book Your Appointment Now</h2>
+      </div>
+
+      <div class="col-md-4">
+        <!-- <img class="w-auto" src="
+             {{url_for('static', filename= 'images/divider-pink.png')}}" alt /> -->
+      </div>
+    </div>
+
+    <div class="container d-flex align-items-center justify-content-center mobile-no-padding">
+      <div class="row goals-sec-pink bg-pink">
+        <div class="col-md-12">
+          <form action="{{ url_for('create_appointment') }}" method="post" id="contact-form">
+            <div class="row contact-cont pt-0">
+              <div class="col-md-5">
+                <ul>
+                  {% with messages = get_flashed_messages() %} {% if messages
+                  %} {% for message in messages %}
+                  <li>{{ message }}</li>
+                  {% endfor %} {% endif %} {% endwith %}
+                </ul>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" name="full_name" required="required" placeholder="Full Name" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" name="email" required="required" placeholder="Email" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" name="phone" required="required" placeholder="Phone" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea name="address" placeholder="Write your message..."></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-7">
+                <div class="container date-container mobile-no-padding">
+                  <!-- <div class="col-md-6 offset-2"> -->
+                  <div class="form-group">
+                    <input type="hidden" name="date" id="select_date" required="required" class="selecteShipDate"
+                      placeholder="Pick Appointment Date" />
+                    <input type="hidden" name="time" id="select_time" value="12:00 PM" />
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-custom bg-green btn-green-bg">
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div style="position: relative;"> <img class="appoint-leaf-img" src="/static/images/appoint-leave.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- --------------------------Section About------------------------ -->
+
+  <section id="sec-about" class="bg-green section-padding-tb  wraper-animated scroll-section">
+    <div class="">
+      <div class="slide-top">
+        <h2 class="text-center">About The Coaching Studio NY</h2>
+        <p class="text-center">
+          First steps on a transformational journey to a relaxed state of mind and
+          happy life.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="container-fluid mt-5 pt-5">
+      <div class="row">
+        <div class="col-md-4 d-flex align-items-center mm-b justify-content-center">
+          <div class="diamond-card text-center">
+            <div class="diamond-card-inner">
+              <div class="card-icon">
+                <img src="{{url_for('static', filename= 'images/identify-goals.png')}}" alt="vision"
+                  class="service-card-img px-2" />
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-head">Identifying Your Goals</h4>
+
+                <p class="card-text">
+                  A life full of hope and achievement is here; say good-bye to
+                  uncertainty. Face challenges with strength, bravery,
+                  passion, and confidence. We will help you get started on
+                  your path to successful transformation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-center mm-b justify-content-center">
+          <div class="diamond-card text-center">
+            <div class="diamond-card-inner">
+              <div class="card-icon">
+                <img src="{{url_for('static', filename= 'images/building-relationships.png')}}"
+                  class="service-card-img px-2" />
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-head">Building Relationships</h4>
+
+                <p class="card-text">
+                  The first step on your path to inner peace is accepting who
+                  you really are. When you radiate fulfillment, peace will
+                  naturally come toward you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-center mm-b justify-content-center">
+          <div class="diamond-card text-center">
+            <div class="diamond-card-inner">
+              <div class="card-icon">
+                <img src="{{url_for('static', filename= 'images/balancing-life.png')}}" alt="vision"
+                  class="service-card-img px-2" />
+              </div>
+              <div class="card-body">
+                <h4 class="card-head">Balancing Life</h4>
+
+                <p class="card-text">
+                  Step into the life you've always imagined—one that's full of
+                  close connections and professional achievements. Together,
+                  you can learn how to strike the delicate balance and make
+                  sure your efforts are focused.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row second-m-top">
+        <div class="col-md-6 d-flex justify-content-center mm-b align-items-center">
+          <div class="diamond-card text-center left-8">
+            <div class="diamond-card-inner">
+              <div class="card-icon">
+                <img src="{{url_for('static', filename= 'images/becoming-self.png')}}" alt="vision"
+                  class="service-card-img px-2" />
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-head">Becoming Your Best Self</h4>
+
+                <p class="card-text">
+                  Your potential is boundless and just waiting to be
+                  discovered. Get ready to embrace change, grasp
+                  opportunities, and do the amazing things you always wanted
+                  to do.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-center mm-b align-items-center">
+          <div class="diamond-card text-center right-8">
+            <div class="diamond-card-inner">
+              <div class="card-icon">
+                <img src="{{url_for('static', filename= 'images/peace-mind.png')}}" alt="vision"
+                  class="service-card-img px-2" />
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-title">Peace of Mind</h4>
+
+                <p class="card-text">
+                  Strong emotion management requires understanding how you
+                  feel. By building emotional intelligence, which leads to
+                  inner harmony, you will be able to deal with emotional highs
+                  and lows efficiently.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------Section Goals------------------------ -->
+  <section id="goals" class="section-padding-tb text-center wraper-animated">
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="row goals-sec-pink bg-pink">
+        <div class="col-md-1">
+          <img class="green-leaf-img" src="{{url_for('static', filename= 'images/green-leaf.png')}}" alt />
+        </div>
+
+        <div class="col-md-10 px-4">
+
+          <div class="slide-top">
+            <h2 class="mb-3">You're entitled to reach your goals!</h2>
+
+            <p>
+              Let’s picture a scenario together where you're no longer letting
+              fear, other people's viewpoints, or any kind of inner critic get
+              in the way of your aspirations; instead, you wake up every morning
+              inspired and enthusiastic, ready to take on the world.<br />
+              That sounds great, but how do you get there?<br />
+              The Coaching Studio NY is the solution.<br />
+              You just need to reach for the stars.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <div class="green-circle-wrapper">
+          <img class="green-circle-img" src="{{url_for('static', filename= 'images/green-circle.png')}}" alt />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- -----------------------------Section Gateway (finalized)------------------------ -->
+
+  <section id="sec-gateway" class="section-padding-tb mt-3 text-center wraper-animated">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <div class="row">
+        <div class="col-md-2 p-0 animate-left-img">
+          <img class="pink-flower-left w-100" src="{{url_for('static', filename= 'images/flower-pink.png')}}" alt />
+        </div>
+
+        <div class="col-md-8 px-5 slide-top">
+          <h2 class="mb-3">A Gateway To Personal And Professional Growth</h2>
+
+          <p>
+            Do you know what it takes to change your life for the better? Most
+            of us know what to do, but we fail to do it or we don't know how
+            to get there. We convince ourselves we're not smart enough,
+            powerful enough, or courageous enough. It's not your abilities
+            that are holding you back; it's might just be something else.
+          </p>
+
+          <p>
+            Get ready to change your narrative, embrace empowerment, and
+            confidently advance toward the future you desire.
+          </p>
+        </div>
+
+        <div class="col-md-2 p-0 align-self-end animate-right-img">
+          <img class="blue-flower-right" src="{{url_for('static', filename= 'images/flower-blue.png')}}" alt />
+        </div>
+
+        <div class="text-center mt-4">
+          <a class="btn btn-custom btn-hover-pink btn-pink-bg bg-pink" href>Contact
+            Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------Section Program Works (finalized)--------------------- -->
+
+  <section id="program-works" class="bg-green section-padding-tb wraper-animated">
+
+    <div class="container slide-top">
+      <div class="">
+        <h2 class="text-center">How The Coaching Studio Program Works</h2>
+        <p class="text-center">
+          Feel the transforming power of the coaching program as you put your
+          ideas into action <br> and make positive changes in your life.
+        </p> <br>
+      </div>
+
+      <!-- <div class="wraper-animated active">
+
+        <div class="slide-top">
+
+      <h2 class="text-center mb-3">How The Coaching Studio Program Works</h2>
+      
+      <p class="text-center">
+        Feel the transforming power of the coaching program as you put your
+        ideas into action <br> and make positive changes in your life.
+      </p> <br>
+
+      </div>
+
+    </div> -->
+
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="card sliding-card custom-card card-radius text-center p-4 card-hover ">
+            <div>
+              <img src="{{url_for('static', filename= 'images/number-one.png')}}" alt="vision"
+                class="number-icon px-2" />
+            </div>
+
+            <div class="card-body padding-t-5 px-4">
+              <div class>
+                <div class="card-head">Identify Your Idea</div>
+              </div>
+
+              <p class="card-text">
+                We work closely with you to figure out your objectives,
+                desires, and life areas you want to improve. Through
+                insightful discussions and thoughtful activities, we help you
+                define your goals for a better future, laying the groundwork
+                for the transformative adventure that lies ahead. Embrace your
+                journey to personal growth.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card sliding-card  custom-card card-radius text-center p-4 card-hover">
+            <div>
+              <img src="{{url_for('static', filename= 'images/number-two.png')}}" alt="vision"
+                class="number-icon px-2" />
+            </div>
+
+            <div class="card-body padding-t-5 padding-t-5 px-2">
+              <div class>
+                <div class="card-head">Milestones</div>
+              </div>
+
+              <p class="card-text">
+                Once your goal has been determined, we help you set achievable
+                benchmarks. These benchmarks serve as checkpoints, enabling
+                you to evaluate your development and keep up motivation. We
+                believe that organizing your journey into digestible segments
+                makes the process more enjoyable and guarantees continuous
+                progress toward your objectives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card sliding-card custom-card card-radius text-center p-4 card-hover">
+            <div>
+              <img src="{{url_for('static', filename= 'images/number-three.png')}}" alt="vision"
+                class="number-icon px-2" />
+            </div>
+
+            <div class="card-body padding-t-5 px-3">
+              <div class>
+                <div class="card-head">Reaching For The Stars</div>
+              </div>
+
+              <p class="card-text">
+                It's time to take a leap of faith. The Coaching Studio helps
+                you identify the resources, strategies, and plans you need to
+                turn your plans into reality. We are there for you each step
+                of the way, whether you're working on forming new habits,
+                developing a positive outlook, improving relationships, or
+                putting time management strategies into practice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------Our Latest News------------------------- -->
+
+  <section class="section-padding-tb  wraper-animated" id="latest-news">
+    <div class="container mt-4">
+
+      <div class="text-center mb-4 slide-top">
+        <h2>Our Latest</h2>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-4 px-4">
+          <div class="card popup-card card-radius custom-card">
+
+            <div class="bg-image hover-zoom">
+
+              <img src="{{url_for('static', filename= 'images/latest-news-1.jpg')}}" class="card-img-top hover-zoom"
+                alt="Image 1" />
+
+            </div>
+
+            <div class="card-body px-4 py-5">
+              <h5 class="card-title">Does life Coaching work?</h5>
+
+              <p class="card-text">
+                The importance of life coaching has been argued over, with
+                proponents emphasizing its advantages and detractors...
+              </p>
+
+              <button class="btn btn-custom bg-pink see-more-button mb-2 btn-hover-pink"
+                data-image="images/tree-img-1.jpg" data-title="Does life Coaching work?"
+                data-description="The importance of life coaching has been argued over, with proponents
+                                emphasizing its advantages and detractors doubting its scientific validity. Numerous
+                                studies, however, indicate that life coaching might help a person in a number of ways.">
+                See more
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 px-4">
+          <div class="card popup-card card-radius custom-card">
+            <img src="{{url_for('static', filename= 'images/cozy-sofa.jpg')}}" class="card-img-top" alt="Image 2" />
+
+            <div class="card-body px-4 py-5">
+              <h5 class="card-title">
+                How to build a better relationship with someone
+              </h5>
+
+              <p class="card-text">
+                You become more adaptable as you build relationships, which is
+                vital...
+              </p>
+
+              <button class="btn btn-custom bg-pink see-more-button mb-2 btn-hover-pink"
+                data-image="images/cozy-sofa.jpg" data-title="How to build a better relationship with someone"
+                data-description="You become more adaptable as you build relationships, which is vital.
+                                You have a network of people you can turn to for support when you find yourself in a
+                                challenging position. The better your relationship with someone is from the very
+                                beginning, the easier it can be to overcome problems along the way.">
+                See more
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 px-4">
+          <div class="card popup-card card-radius custom-card">
+            <img src="{{url_for('static', filename= 'images/slider-img-2.jpg')}}" class="card-img-top" alt="Image 3" />
+
+            <div class="card-body px-4 py-5">
+              <h5 class="card-title">Stress management tips and tricks</h5>
+
+              <p class="card-text">
+                The pressures of modern life, such as work pressure,
+                economical strain, and family duties, can be challenging...
+              </p>
+
+              <button class="btn btn-custom bg-pink see-more-button mb-2 btn-hover-pink"
+                data-image="images/tree-img-2.jpg" data-title="Stress management tips and tricks" data-description="The pressures of modern life, such as work pressure, economical strain,
+                            and family duties, can be challenging for anyone. One of the effective ways to overcome
+                            these difficulties is to work with a life coach who can help you create a strategy and
+                            eventually get rid of stress.">
+                See more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- -------------------Life Coaching Code------------------- -->
+  <!-- ---------------------------Section Contact Us------------------ -->
+
+  <section id="sec-contact" class="text-center bg-green section-padding-tb  wraper-animated scroll-section">
+
+    <div class="slide-top">
+      <h2 class="text-center mb-5">Contact Us</h2>
+      <p class="text-center">
+        Your journey is important to us, and we can't wait to hear from you.
+      </p>
+      <p>
+        Want to contact us or need additional details? Let's have a discussion
+        that will lead towards development,<br />
+        transformation, and empowerment together.
+      </p>
+    </div>
+  </section>
+
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="row contact-sec-pink bg-pink">
+      <div class="col-md-12">
+        <form action="{{ url_for('contact_us') }}" method="post" id="contact-form-b">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="text" name="full_name" required="required" placeholder="Full Name" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="text" name="email" required="required" placeholder="Email" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="text" name="phone" required="required" placeholder="Phone" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <textarea name="message" placeholder="Write your message..."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="form-group pb-2 text-center mt-4">
+            <button type="submit" class="btn btn-custom bg-green btn-hover-green btn-green-bg ">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup" class="popup" style="display: none">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="popup-content">
+        <span class="close" id="closePopup">&times;</span>
+
+        <img id="popupImage" src alt="Popup Image" class="mb-3" />
+
+        <h2 id="popupTitle" class="mb-3"></h2>
+
+        <p id="popupDescription"></p>
+      </div>
+    </div>
+  </div>
+  <div id="timePickerModal" class="popup" style="display: none">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="timepop-content">
+        <span class="close" id="closeTimepicker">&times;</span>
+        <div class="bg-green">
+          <h5 class="modal-title" id="exampleModalLabel">Pick a Time</h5>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="form-group">
+                <label for="timepicker" style="visibility: hidden;">Select a Time:</label>
+                <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+            </div> -->
+          <div class="time-slots">
+            <div class="row">
+              <div class="col-sm-2  time-slot time-block">
+                <input type="hidden" value="9:00 AM">
+                <p>9:00 AM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="10:00 AM">
+                <p>10:00 AM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="11:00 AM">
+                <p>11:00 AM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="12:00 PM">
+                <p>12:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="1:00 PM">
+                <p>1:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="2:00 PM">
+                <p>2:00 PM</p>
+              </div>
+              <div class="col-sm-2  time-slot time-block">
+                <input type="hidden" value="3:00 PM">
+                <p>3:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="4:00 PM">
+                <p>4:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="5:00 PM">
+                <p>5:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="6:00 PM">
+                <p>6:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="7:00 PM">
+                <p>7:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="8:00 PM">
+                <p>8:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="9:00 PM">
+                <p>9:00 PM</p>
+              </div>
+              <div class="col-sm-2 time-slot time-block">
+                <input type="hidden" value="10:00 PM">
+                <p>10:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="popup-footer">
+            <button type="button" class="btn  btn-secondary" id="close">Close</button>
+            <button type="button" class="btn  bg-green" id="save_time">Save Time</button>
+          </div> -->
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- -----------------Footer (finalized)----------------- -->
+  <section class="bg-pink footer-above" style="margin-top: 80px">
+    <div class="container px-4">
+      <div class="row text-center d-flex justify-content-center py-4">
+        <div class="col-md-4">
+          <p class="mb-0 info-text">
+            <i class="fas fa-phone mr-4 footer-icon"></i><a href="tel:347.369.7385">347.369.7385</a>
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <p class="mb-0 info-text">
+            <i class="fas fa-envelope mr-4 footer-icon"></i>
+            <a href="mailto:info@coachingstudiony.com">info@coachingstudiony.com</a>
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <p class="mb-0 info-text-2">
+            <i class="fas fa-map mr-4 footer-icon"></i> Spring Valley NY,
+            10977
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-green px-0">
+    <footer class="container text-center text-white">
+      <div class="pt-5 pb-3">
+        <div class="row">
+          <div class="col-md-2"></div>
+
+          <div class="col-md-8 text-center px-5">
+            <div class="mb-3 text-center">
+              <img class="w-50" src="{{url_for('static', filename= 'images/footer-logo.svg')}}" alt />
+            </div>
+
+            <p class="footer-text">
+              Ready to get started on a path of personal development, growth
+              and empowerment? At The Coaching Studio, together, we'll find
+              the path to meet you needs and set goals with confidence,
+              perseverance, and an exciting sense of purpose. Reach For the
+              Stars!
+            </p>
+
+            <p class="footer-text">
+              To start your transformational journey, get in touch with us
+              today!
+            </p>
+
+            <p class="text-copyright">
+              Copyright © 2023, All Right Reserved The Coaching Studio NY
+            </p>
+          </div>
+
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <script>
+    var baseUrl = "{{ request.scheme }}://{{ request.host }}{{ url_for('static', filename='') }}";
+  </script>
+
+  <!-- ---------------------Scripts---------------------- -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
+
+  <!-- --------------------Appointment booking datepicker calender------------------- -->
+
+  <script>
+    function disableTimeSlots(data) {
+      // Reset classes for all time slots
+      $(".time-slot").removeClass("time-block-disabled enabled");
+
+      const bookedSlots = data.booked_slots.map(slot => slot.booking_time);
+      const unavailableSlots = data.unavailable_slots.map(slot => slot.booking_time);
+
+      $(".time-slot").each(function () {
+        const timeSlot = $(this).find("input").val();
+
+        if (bookedSlots.includes(timeSlot)) {
+          $(this).addClass("time-block-disabled");
+        } else if (unavailableSlots.includes(timeSlot)) {
+          $(this).addClass("time-block-disabled");
+        } else {
+          $(this).addClass("enabled");
+        }
+      });
+    }
+    var dateToday = new Date();
+    $(document).ready(function () {
+      $input = $("#select_date");
+      $input.datepicker({
+        format: "dd / MM / yyyy",
+        orientation: "auto",
+        container: ".date-container",
+        pickerPosition: {
+          open: "bottom",
+          vertical: "bottom",
+          horizontal: "right", // Adjust the horizontal position
+          offset: 12, // Offset by 12 pixels to the right
+        },
+        startDate: new Date(), // Set the start date to today
+        todayHighlight: true,
+        initialDate: new Date(),
+        minDate: dateToday,
+      });
+      $input.data("datepicker").hide = function () { };
+      $input.datepicker("show");
+      $input.val(getFormattedDate(new Date()));
+      var selectedDate = $input.val(getFormattedDate(new Date()));
+
+      $(".datepicker .prev").removeClass("disabled");
+      $(".datepicker .prev").css('background', '#d8de96');
+      $(".datepicker .today").addClass('active');
+      $(".datepicker").addClass("custom-dropdown");
+      $input.on("changeDate", function (e) {
+        let timePickerModal = document.getElementById('timePickerModal');
+        let iniTime = $('#select_time').val()
+        fetch(`/api/slots?date=${getFormattedDate(e.date)}`)
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle the fetched data
+            const bookedSlots = data.booked_slots;
+            const unavailableSlots = data.unavailable_slots;
+
+            // Display booked slots
+            console.log('Booked Slots:');
+            bookedSlots.forEach((slot) => {
+              console.log(`ID: ${slot.id}, Booking Time: ${slot.booking_time}, Status: ${slot.status}`);
+            });
+
+            // Display unavailable slots
+            console.log('Unavailable Slots:');
+            unavailableSlots.forEach((slot) => {
+              console.log(`ID: ${slot.id}, Booking Time: ${slot.booking_time}, Status: ${slot.status}`);
+            });
+            disableTimeSlots(data)
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
+        $('#timepicker').val(iniTime)
+        timePickerModal.style.display = 'block';
+        $('#save_time').on('click', function () {
+          let timepicker = $('#timepicker').val()
+          $('#select_time').val(timepicker)
+          timePickerModal.style.display = 'none';
+        })
+        $('.close').on('click', function () {
+          timePickerModal.style.display = 'none';
+
+        })
+        $('#close').on('click', function () {
+          timePickerModal.style.display = 'none';
+
+        })
+      })
+
+    });
+    function getFormattedDate(date) {
+      var day = date.getDate();
+      var monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      var month = monthNames[date.getMonth()];
+      var year = date.getFullYear();
+
+      return (
+        (day < 10 ? "0" : "") + day + " / " +
+        month + " / " +
+        year
+      );
+    }
+  </script>
+
+  <!-- --------------------Sliding Animation---------------------- -->
+
+  <script>
+    const cards = document.querySelectorAll('.sliding-card');
+    const windowHeight = window.innerHeight;
+    const delayBetweenCards = 1000; // Adjust as needed (in milliseconds)
+
+    // Function to check if an element is in the viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.top <= windowHeight
+      );
+    }
+
+    // Function to add animation class to cards on scroll with delays
+    function animateCardsOnScroll() {
+      let delay = 1000;
+      cards.forEach((card, index) => {
+        if (isInViewport(card)) {
+          setTimeout(() => {
+            card.classList.add('card-visible');
+          }, delay * (index + 1) - 500);
+          // delay += delayBetweenCards;
+        }
+      });
+    }
+
+    // Initial animation on page load
+    animateCardsOnScroll();
+
+    // Event listener for scrolling
+    window.addEventListener('scroll', animateCardsOnScroll);
+    $(document).ready(function () {
+      $('#timepicker').timepicker();
+    });
+  </script>
+
+  <!-- -------------------Navbar Scrolling------------------ -->
+  <!-- <script>
+
+  $(document).ready(function() {
+      // Smooth scrolling for navigation links
+      $('a.nav-link').on('click', function(event) {
+          if (this.hash !== "") {
+              event.preventDefault();
+  
+              var hash = this.hash;
+              var offset = $(hash).offset().top;
+  
+              // Adjust for fixed navbar height
+              var navbarHeight = $('#neubar').outerHeight();
+              offset -= navbarHeight;
+  
+              $('html, body').animate({
+                  scrollTop: offset
+              }, 500, function(){
+                  window.location.hash = hash;
+              });
+          }
+      });
+  });
+  
+  
+  </script> -->
+</body>
+<style>
+  .time-block-disabled {
+    background-color: #c2bfbf;
+    color: #ffffff;
+  }
+</style>
+
+</html>

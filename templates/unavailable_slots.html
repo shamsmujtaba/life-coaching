@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Appointment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Include Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Add your CSS and other head content here -->
+    <style>
+        .datepicker td,
+        .datepicker th {
+            width: 47px !important;
+            height: 37px !important;
+        }
+
+        .datepicker {
+            top: 10% !important;
+            left: 10% !important;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        section.container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .row.goals-sec-pink {
+            background-color: #e49b80;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 75%;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            color: red;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container.date-container {
+            text-align: center;
+        }
+
+        .selecteShipDate {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #d8de96;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #d8de96;
+
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: #fff;
+        }
+        /* --------------Time Slots------------------ */
+        /* ------------------Time Slots-------------------- */
+.time-slots p {
+  font-size: 12px;
+  height: 100%;
+  margin: 4px 13px;
+}
+.time-slots .time-block {
+  border: 1px solid;
+  margin: 9px;
+} 
+.time-block.active {
+  background-color: var(--secondary-color) !important;
+  color: #000000;
+} 
+.time-block.enabled {
+  cursor: pointer;
+  background-color: #3acfff;
+  color: #000000;
+} 
+.disabled-time-slot {
+  pointer-events: none; 
+  cursor: pointer;
+  background-color: #e90800;
+  color: #fff9f9;
+} 
+.booked-time-slot {
+  pointer-events: none; 
+  cursor: pointer;
+  background-color: #002be9 !important;
+  color: #fff9f9;
+} 
+    </style>
+</head>
+
+<body>
+    <h1>Edit View</h1>
+    <section class="container">
+        <div class="row goals-sec-pink">
+            <div class="col-md-12">
+                <form action="{{ url_for('create_unavailability_slot') }}" method="post"
+                    id="edit-form">
+                    <div class="row contact-cont pt-0">
+                        <div class="col-md-5">
+                            <ul>
+                                {% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+                                messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %} {% endif %} {% endwith %}
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="container date-container">
+                                <!-- <div class="col-md-6 offset-2"> -->
+                                <div class="form-group">
+                                    <input type="hidden" name="date" id="select_date" class="selecteShipDate"
+                                        placeholder="Pick Appointment Date" />
+                                        <input type="hidden" name="time" id="select_time" value=""/>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <!-- <div style="height: 23pc;"></div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit">Save Changes</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 offset-5">
+                                <div class="time-slots" style="margin-top: 17pc;">
+                                    <div class="row">
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="9:00 AM">
+                                        <p>9:00 AM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="10:00 AM">
+                                        <p>10:00 AM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="11:00 AM">
+                                        <p>11:00 AM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="12:00 PM">
+                                        <p>12:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="1:00 PM">
+                                        <p>1:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="2:00 PM">
+                                        <p>2:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="3:00 PM">
+                                        <p>3:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="4:00 PM">
+                                        <p>4:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="5:00 PM">
+                                        <p>5:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="6:00 PM">
+                                        <p>6:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="7:00 PM">
+                                        <p>7:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="8:00 PM">
+                                        <p>8:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="9:00 PM">
+                                        <p>9:00 PM</p>
+                                      </div>
+                                      <div class="col-sm-3 time-slot time-block">
+                                        <input type="hidden" value="10:00 PM">
+                                        <p>10:00 PM</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            // Your code here...
+        });
+
+        function disableTimeSlots(data) {
+            const bookedSlots = data.booked_slots.map(slot => slot.booking_time);
+            const unavailableSlots = data.unavailable_slots.map(slot => slot.booking_time);
+
+            $(".time-slot").each(function () {
+                const timeSlot = $(this).find("input").val();
+
+                if (bookedSlots.includes(timeSlot)) {
+                    $(this).addClass("booked-time-slot");
+                } else if (unavailableSlots.includes(timeSlot)) {
+                    $(this).addClass("disabled-time-slot").removeClass("enabled booked-time-slot");
+                } else {
+                    $(this).addClass("enabled").removeClass("booked-time-slot disabled-time-slot");
+                }
+            });
+}
+
+    
+        $(document).ready(function () {
+            // Initialize datepicker
+            $input = $("#select_date");
+            $input.datepicker({
+                format: "dd / MM / yyyy",
+                orientation: "auto",
+                container: ".date-container",
+                pickerPosition: {
+                    open: "bottom",
+                    vertical: "bottom",
+                    horizontal: "right",
+                    offset: 12,
+                },
+            });
+            $input.data("datepicker").hide = function () { };
+            $input.datepicker("show");
+            $(".datepicker").addClass("custom-dropdown");
+    
+            // Add a changeDate event handler to the datepicker
+            $input.on('changeDate', function (e) {
+                const selectedDate = e.format();
+                console.log('Selected Date:', selectedDate);
+    
+                // Call fetchAppointment when the date is changed
+                fetchAppointment(selectedDate);
+            });
+    
+            // Fetch and disable time slots for the initially selected date
+            const initialSelectedDate = $input.val();
+            console.log('Initial Selected Date:', initialSelectedDate);
+            fetchAppointment(initialSelectedDate);
+    
+            // Fetch appointment data and disable time slots
+            function fetchAppointment(selectedDate) {
+                fetch(`/api/slots?date=${selectedDate}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Handle the fetched data
+                        const bookedSlots = data.booked_slots;
+                        const unavailableSlots = data.unavailable_slots;
+    
+                        // Display booked slots
+                        console.log('Booked Slots:');
+                        bookedSlots.forEach((slot) => {
+                            console.log(`ID: ${slot.id}, Booking Time: ${slot.booking_time}, Status: ${slot.status}`);
+                        });
+    
+                        // Display unavailable slots
+                        console.log('Unavailable Slots:');
+                        unavailableSlots.forEach((slot) => {
+                            console.log(`ID: ${slot.id}, Booking Time: ${slot.booking_time}, Status: ${slot.status}`);
+                        });
+    
+                        disableTimeSlots(data);
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        });
+    </script>
+    
+    
+
+
+
+  
+
+</body>
+</html>

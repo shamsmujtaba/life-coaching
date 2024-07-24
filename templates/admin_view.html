@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .delete_button {
+            background-color: red !important;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Tab styles */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .tab-button.active {
+            background-color: #343a40;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin View</h1>
+
+    <!-- Tabs -->
+    <div class="tab-container">
+        <button class="tab-button active" onclick="showTab('appointments')">Appointments</button>
+        <button class="tab-button" onclick="showTab('bookedSlots')">Booked Slots</button>
+        <button class="tab-button" onclick="showTab('unavailableSlots')">Unavailable Slots</button>
+    </div>
+    <a href="{{ url_for('add_unavailable') }}">Set Unavailable Slot</a>
+
+    <!-- Appointments Table -->
+    <div class="tab-content active" id="appointmentsTab">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Appointment Date</th>
+                    <th>Time</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments if appointment.email %}
+                <tr>
+                    <td>{{ appointment.id }}</td>
+                    <td>{{ appointment.date}}</td>
+                    <td id="date-cells">{{ appointment.start_time }}</td>
+                    <td>{{ appointment.full_name }}</td>
+                    <td>{{ appointment.email }}</td>
+                    <td>
+                        <select name="appointment_status">
+                            <option value="pending" {% if appointment.status=='pending' %}selected{% endif %}>Pending
+                            </option>
+                            <option value="confirmed" {% if appointment.status=='confirmed' %}selected{% endif %}>
+                                Confirmed</option>
+                            <option value="cancelled" {% if appointment.status=='cancelled' %}selected{% endif %}>
+                                Cancelled</option>
+                        </select>
+                    </td>
+                    <td>{{ appointment.payment_status }}</td>
+
+                    <td>
+                        <form method="POST" action="{{ url_for('admin_view') }}">
+                            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                            <input type="hidden" name="appointment_date" value="{{ appointment.date }}">
+                            <input type="hidden" name="appointment_email" value="{{ appointment.email }}">
+                            <input type="hidden" name="appointment_status" value="{{ appointment.status }}">
+                            <input type="hidden" name="appointment_payment_status"
+                                value="{{ appointment.payment_status }}">
+                            <input type="hidden" name="appointment_payment_status" value="{{ appointment.start_time }}">
+                            <button type="submit" id="delete_button" name="action" value="delete"
+                                class="delete_button">Delete</button>
+                        </form>
+                        <form method="GET" action="{{ url_for('edit_appointment', appointment_id=appointment.id) }}">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Booked Slots Table -->
+    <div class="tab-content" id="bookedSlotsTab">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>Booking Date</th>
+                    <th>Booking Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot, appointment in booked_slots if slot.status == "booked" %}
+                <tr>
+                    <td>{{ slot.id }}</td>
+                    <td>{{ appointment.full_name}}</td>
+                    <td>{{ appointment.email}}</td>
+                    <td>{{ appointment.date}}</td>
+                    <td id="date-cells">{{ slot.booking_time }}</td>
+                    <td>{{ slot.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Unavailable Slots Table -->
+    <div class="tab-content" id="unavailableSlotsTab">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>>
+                    <th>Booking Date</th>
+                    <th>Booking Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot, appointment in booked_slots if slot.status == "Unavailable" %}
+                <tr>
+                    <td>{{ slot.id }}</td>
+                    <td>{{ appointment.date}}</td>
+                    <td id="date-cells">{{ slot.booking_time}}</td>
+                    <td>{{ slot.status }}</td>
+                    <td>
+                        <form
+                            action="{{ url_for('delete_unavailability_slot', slot_id=slot.id, appointment_id =appointment.id) }}"
+                            method="post">
+                            <button type="submit" class="btn-danger" style="background-color: red;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(tabContent => tabContent.classList.remove('active'));
+
+            const selectedTab = document.getElementById(tabName + 'Tab');
+            const selectedButton = document.querySelector(`.${tabName}`);
+
+            selectedTab.classList.add('active');
+            selectedButton.classList.add('active');
+        }
+    </script>
+    <script>
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+
+        const dateCells = document.querySelectorAll('.date-cells');
+
+        t
+        dateCells.forEach(function (cell) {
+            const originalDate = cell.textContent.trim();
+            const formattedDate = formatDate(originalDate);
+            cell.textContent = formattedDate;
+        });
+    </script>
+</body>
+
+</html>
